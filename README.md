@@ -5,9 +5,18 @@ This is the repo for the official website of the open source desktop app, Scout-
 
 Scout-App is the simplest Sass processor.
 
-The repo for the desktop app is located here:
+The site is hosted by GitHub here:
+
+* https://scout-app.github.io
+
+We will soon update the CNAME/DNS settings to have it linked to this URL (when namecheap comes back online)
 
 * http://scout-app.io
+
+The repo for the desktop app is located here:
+
+* https://github.com/TheJaredWilcurt/scout-app
+
 
 * * *
 
