@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />        <!-- Must be first item in <head> -->
+    <title>Scout-App Dashboard</title>
+    <meta charset="UTF-8"                                                                                      />
+    <meta name="description"                     content="Scout-App dashboard for downloads and statistics."   />
+    <meta name="keywords"                        content="Scout, Scout-App, scoutapp, scout app, Sass, scss, css, preprocessor, GUI, styles, front-end, web design, web development tools, free, open source" />
+    <meta http-equiv="Expires"                   content="0"                                               />
+    <meta name="viewport"                        content="width=device-width, initial-scale=1.0"           />
+    <meta name="subject"                         content="Homepage for Scout-App"                          />
+    <meta name="copyright"                       content="Mutually Human"                                  />
+    <meta name="language"                        content="EN"                                              />
+    <meta name="robots"                          content="index,follow"                                    />
+    <meta name="owner"                           content="Mutually Human"                                  />
+    <meta name="rating"                          content="General"                                         />
+    <meta name="HandheldFriendly"                content="True"                                            />
+    <meta name="application-name"                content="Scout-App"                                       />
+    <meta http-equiv="cleartype"                 content="on"                                              />
+    <meta name="msapplication-navbutton-color"   content="#FFFFFF"                                         />
+    <meta name="msapplication-TileColor"         content="#FFFFFF"                                         />
+    <meta name="msapplication-square70x70logo"   content="_img/meta/mstile01sm.png"                        />
+    <meta name="msapplication-square150x150logo" content="_img/meta/mstile02md.png"                        />
+    <meta name="msapplication-wide310x150logo"   content="_img/meta/mstile03wd.png"                        />
+    <meta name="msapplication-square310x310logo" content="_img/meta/mstile04lg.png"                        />
+    <meta name="apple-mobile-web-app-title"      content="Scout-App"                                       />
+    <meta name="apple-mobile-web-app-capable"    content="yes"   /> <!-- "yes" hides Safari navbar in iOS -->
+    <meta name="apple-touch-fullscreen"          content="yes"                                             />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"                                     />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-57.png"  type="image/png" sizes="57x57"   />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-57.png"  type="image/png" sizes="57x57"   />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-72.png"  type="image/png" sizes="72x72"   />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-72.png"  type="image/png" sizes="72x72"   />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-114.png" type="image/png" sizes="114x114" />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-114.png" type="image/png" sizes="114x114" />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-144.png" type="image/png" sizes="144x144" />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-144.png" type="image/png" sizes="144x144" />
+    <link rel="apple-touch-startup-image"    href="_img/meta/apl-str.png" type="image/png"                 />
+    <link rel="fluid-icon"                   href="_img/meta/fluid.png"   type="image/png"                 />
+    <link rel="icon"                         href="favicon.ico"           type="image/x-icon"              />
+    <link rel="shortcut icon"                href="favicon.ico"           type="image/ico"                 />
+    <link rel="stylesheet"                   href="_styles/style.min.css" type="text/css"                  />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script>window.jQuery || document.write('<script src="_scripts/jquery-2.1.3.min.js"><\/script>')</script>
+    <script src="_scripts/crossbrowser.js"></script>
+    <script src="_scripts/64or32-jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function numberWithCommas (x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            $.get("https://api.github.com/repos/TheJaredWilcurt/scout-app/releases", function (data) {
+                var totalDownloads = [];
+                var win = [];
+                var lin = [];
+                var osx = [];
+                for (var i = 0; i < data.length; i++) {
+                    var version = data[i].tag_name;
+                    var versionNumber = version.split('v')[1];
+                    var dateTime = data[i].created_at;
+                    var date = dateTime.split('T')[0];
+                    var release = '<a href="https://github.com/TheJaredWilcurt/scout-app/releases/tag/' + version + '" title="View release notes">' + date + '</a>';
+                    var downloadURL = "#";
+                    var downloads = "N/A";
+                    var sizeMB = "N/A";
+                    var downloadAndVersion = 'Scout-App ' + version;
+                    if (data[i].assets[0]) {
+                        for (var j = 0; j < data[i].assets.length; j++) {
+                            downloadURL = data[i].assets[j].browser_download_url;
+                            downloads = data[i].assets[j].download_count;
+                            var Bytes = data[i].assets[j].size;
+                            var KB = Bytes / 1024;
+                            var MB = KB / 1024;
+                            sizeMB = '<span title="' + numberWithCommas(Math.round(KB)) + ' KB">' + (Math.round(MB * 10) / 10) + ' MB</span>';
+                            var name = data[i].assets[j].name;
+                            download = '<a href="' + downloadURL + '" title="Download this version">' + name + '</a>';
+                            totalDownloads.push(downloads);
+                            //If file is bigger than 20MB
+                            if ( Bytes > 20000000 ) {
+                                var osLetter = name.toLowerCase().charAt(0);
+                                if ( osLetter == "w" ) {
+                                    win.push(downloads);
+                                } else if ( osLetter == "l" ) {
+                                    lin.push(downloads);
+                                } else if ( osLetter == "o" ) {
+                                    osx.push(downloads);
+                                }
+                            }
+                            //Make the line between releases thicker
+                            var tr = "<tr>";
+                            if (j == 0 && i == 0) {
+                                tr = '<tr class="latest-release">';
+                            } else if (j == 0) {
+                                tr = '<tr class="new-release">';
+                            }
+                            $("#output tbody").append(
+                                tr +
+                                  '<td><strong>' + version + '</strong></td>' +
+                                  '<td>' + download + '</td>' +
+                                  '<td>' + sizeMB + '</td>' +
+                                  '<td>' + release + '</td>' +
+                                  '<td>' + downloads + '</td>' +
+                                '</tr>'
+                            );
+                        }
+                    } else {
+                        $("#output tbody").append(
+                            '<tr>' +
+                              '<td><strong>' + version + '</strong></td>' +
+                              '<td>' + download + '</td>' +
+                              '<td>' + sizeMB + '</td>' +
+                              '<td>' + release + '</td>' +
+                              '<td>' + downloads + '</td>' +
+                            '</tr>'
+                        );
+                    }
+                }
+                debugger;
+                var downloadCount = 0;
+                var downloadCountWIN = 0;
+                var downloadCountLIN = 0;
+                var downloadCountOSX = 0;
+                for (var k = 0; k < totalDownloads.length; k++) {
+                    downloadCount = downloadCount + totalDownloads[k];
+                }
+                for (var l = 0; l < win.length; l++) {
+                    downloadCountWIN = downloadCountWIN + win[l];
+                }
+                for (var m = 0; m < lin.length; m++) {
+                    downloadCountLIN = downloadCountLIN + lin[m];
+                }
+                for (var n = 0; n < osx.length; n++) {
+                    downloadCountOSX = downloadCountOSX + osx[n];
+                }
+                $("#total").html('<p>The official releases of Scout-App have been downloaded <strong>' + downloadCount + ' times</strong>.</p>');
+                var withoutCLI = downloadCountWIN + downloadCountLIN + downloadCountOSX;
+                console.log(withoutCLI);
+                $("#os .win").width( Math.round( (downloadCountWIN / withoutCLI) * 100) + "%" ).attr("title", downloadCountWIN + " downloads");
+                $("#os .lin").width( Math.round( (downloadCountLIN / withoutCLI) * 100) + "%" ).attr("title", downloadCountLIN + " downloads");
+                $("#os .osx").width( Math.round( (downloadCountOSX / withoutCLI) * 100) + "%" ).attr("title", downloadCountOSX + " downloads");
+                $("#os").css("visibility", "visible");
+
+            });
+        });
+
+    </script>
+
+  </head>
+  <body>
+
+    <div id="wrapper">
+
+      <div class="row">
+        <h1 class="textbrownsugarketchup">Scout-App</h1>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div id="total"></div>
+
+          <table id="os">
+            <tbody>
+              <tr>
+                <td class="win">Windows</td>
+                <td class="lin">Linux</td>
+                <td class="osx">OSX</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table id="output" class="table table-hover">
+            <thead>
+              <tr>
+                <td><strong>Version</strong></td>
+                <td>Download</td>
+                <td>Size</td>
+                <td>Released</td>
+                <td>Downloads</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <a href="https://github.com/TheJaredWilcurt/scout-app" class="github-corner" title="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="position:absolute;top:0;border:0;right:0" fill="#008cba" color="#fff"><path d="M0 0l115 115h15l12 27 108 108v-250z"/><path d="M128.3 109c-14.5-9.3-9.3-19.4-9.3-19.4 3-6.9 1.5-11 1.5-11-1.3-6.6 2.9-2.3 2.9-2.3 3.9 4.6 2.1 11 2.1 11-2.6 10.3 5.1 14.6 8.9 15.9" fill="#fff" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115c-.1.1 3.7 1.5 4.8.4l13.9-13.8c3.2-2.4 6.2-3.2 8.5-3-8.4-10.6-14.7-24.2 1.6-40.6 4.7-4.6 10.2-6.8 15.9-7 .6-1.6 3.5-7.4 11.7-10.9 0 0 4.7 2.4 7.4 16.1 4.3 2.4 8.4 5.6 12.1 9.2 3.6 3.6 6.8 7.8 9.2 12.2 13.7 2.6 16.2 7.3 16.2 7.3-3.6 8.2-9.4 11.1-10.9 11.7-.3 5.8-2.4 11.2-7.1 15.9-16.4 16.4-30 10-40.6 1.6.2 2.8-1 6.8-5 10.8l-11.7 11.6c-1.2 1.2.6 5.4.8 5.3z" fill="#fff" class="octo-body"/></svg></a>
+  </body>
+</html>

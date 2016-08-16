@@ -1,0 +1,16 @@
+.DS_Store
+.sass-cache/*
+.sass-cache
+site/vendor/*
+tmp/*
+/tmp
+build/*
+lib/*
+bower_components/*
+node_modules/*
+.idea/*
+RUN.lnk
+thumbs.db
+.bundle
+/build
+*.pfx

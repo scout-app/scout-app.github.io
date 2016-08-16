@@ -1,0 +1,122 @@
+
+// The main document, every page on the site refers to this basic document
+
+//::-webkit-scrollbar
+//    width: 14px
+//
+//::-webkit-scrollbar-button
+//    background: $ketchup
+//    height: 18px
+//
+//::-webkit-scrollbar-track-piece
+//    background-color: #444
+//
+//::-webkit-scrollbar-thumb
+//    background: $ketchup
+
+*,
+*:before,
+*:after
+    box-sizing: border-box
+
+html,
+body
+    +bmp0
+    width: 100%
+    height: 100%
+    font-family: sans-serif
+
+img
+    -ms-interpolation-mode: bicubic
+
+#wrapper
+    max-width: 1403px
+    margin: 0 auto
+    background-color: #FFF
+
+h1,
+h2,
+h3,
+h4
+    font-family: $logoFont
+
+h1
+    margin: 70px 0px 15px 0px
+    font-size: 40px
+
+h2
+    font-size: 32px
+
+h3
+    margin: 15px auto 10px auto
+    font-size: 25px
+
+h4
+    font-size: 21px
+
+a,
+div,
+li,
+p
+    font-size: $standardTextSize
+
+em
+    color: rgba(0, 0, 0, 0.7)
+    font-style: italic
+
+code
+    font-family: $consoleFont
+    font-size: 18px
+    font-weight: normal
+
+.hide
+    display: none
+
+.full,
+.half,
+.thirds
+    display: inline-block
+    font-size: 18px
+    text-align: center
+    vertical-align: top
+
+.full
+    width: 100%
+
+.half
+    width: 50%
+
+.thirds
+    width: 33.33333334%
+
+.bg
+    &white
+        background: #FFF
+    &black
+        background: #000
+    &puppybase
+        background: $puppyBase
+    &puppyspot
+        background: $puppySpot
+    &ketchup
+        background: $ketchup
+    &mustard
+        background: $mustard
+    &brownsugarketchup
+        background: $brownSugarKetchup
+
+.text
+    &white
+        color: #FFF
+    &black
+        color: #000
+    &puppybase
+        color: $puppyBase
+    &puppyspot
+        color: $puppySpot
+    &ketchup
+        color: $ketchup
+    &mustard
+        color: $mustard
+    &brownsugarketchup
+        color: $brownSugarKetchup

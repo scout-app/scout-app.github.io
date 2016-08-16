@@ -1,0 +1,39 @@
+
+// Supplies mixins and variables that other .scss files can call
+
+$logoFont: 'Rubik One', sans-serif
+$secondaryFont: 'Montserrat', sans-serif
+$consoleFont: 'Share Tech Mono', monospace
+$mustard: #FFD255
+$ketchup: #D72A2A
+$brownSugarKetchup: #821919
+$puppyBase: #EBE2DB
+$puppySpot: #DD8D4B
+$standardTextSize: 18px
+
+@mixin bmp0
+    border: 0px
+    margin: 0px
+    padding: 0px
+
+@mixin noselect
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+@mixin translate3d($x, $y, $z)
+    -webkit-transform: translate3d($x, $y, $z)
+    -moz-transform: translate3d($x, $y, $z)
+    -ms-transform: translate3d($x, $y, $z)
+    -o-transform: translate3d($x, $y, $z)
+    transform: translate3d($x, $y, $z)
+
+@mixin translate($x, $y)
+    -webkit-transform: translate($x, $y)
+    -moz-transform: translate($x, $y)
+    -ms-transform: translate($x, $y)
+    -o-transform: translate($x, $y)
+    transform: translate($x, $y)

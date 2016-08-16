@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />    <!-- Must be first item in <Head> -->
+    <title>Scout-App - Sass without hassle</title>
+    <meta charset="UTF-8"                                                                                  />
+    <meta name="description"                     content="Scout-App, the easiest way to use Sass!"         />
+    <meta name="keywords"                        content="Scout, Scout-App, scoutapp, scout app, Sass, scss, css, preprocessor, GUI, styles, front-end, web design, web development tools, free, open source" />
+    <meta http-equiv="Expires"                   content="0"                                               />
+    <meta name="viewport"                        content="width=device-width, initial-scale=1.0"           />
+    <meta name="subject"                         content="Homepage for Scout-App"                          />
+    <meta name="copyright"                       content="Mutually Human"                                  />
+    <meta name="language"                        content="EN"                                              />
+    <meta name="robots"                          content="index,follow"                                    />
+    <meta name="owner"                           content="Mutually Human"                                  />
+    <meta name="rating"                          content="General"                                         />
+    <meta name="HandheldFriendly"                content="True"                                            />
+    <meta name="application-name"                content="Scout-App"                                       />
+    <meta http-equiv="cleartype"                 content="on"                                              />
+    <meta name="msapplication-navbutton-color"   content="#FFFFFF"                                         />
+    <meta name="msapplication-TileColor"         content="#FFFFFF"                                         />
+    <meta name="msapplication-square70x70logo"   content="_img/meta/mstile01sm.png"                        />
+    <meta name="msapplication-square150x150logo" content="_img/meta/mstile02md.png"                        />
+    <meta name="msapplication-wide310x150logo"   content="_img/meta/mstile03wd.png"                        />
+    <meta name="msapplication-square310x310logo" content="_img/meta/mstile04lg.png"                        />
+    <meta name="apple-mobile-web-app-title"      content="Scout-App"                                       />
+    <meta name="apple-mobile-web-app-capable"    content="yes"   /> <!-- "yes" hides Safari navbar in iOS -->
+    <meta name="apple-touch-fullscreen"          content="yes"                                             />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"                                     />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-57.png"  type="image/png" sizes="57x57"   />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-57.png"  type="image/png" sizes="57x57"   />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-72.png"  type="image/png" sizes="72x72"   />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-72.png"  type="image/png" sizes="72x72"   />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-114.png" type="image/png" sizes="114x114" />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-114.png" type="image/png" sizes="114x114" />
+    <link rel="apple-touch-icon"             href="_img/meta/apl-144.png" type="image/png" sizes="144x144" />
+    <link rel="apple-touch-icon-precomposed" href="_img/meta/apl-144.png" type="image/png" sizes="144x144" />
+    <link rel="apple-touch-startup-image"    href="_img/meta/apl-str.png" type="image/png"                 />
+    <link rel="fluid-icon"                   href="_img/meta/fluid.png"   type="image/png"                 />
+    <link rel="icon"                         href="favicon.ico"           type="image/x-icon"              />
+    <link rel="shortcut icon"                href="favicon.ico"           type="image/ico"                 />
+    <link rel="stylesheet"                   href="_styles/style.min.css" type="text/css"                  />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header>
+        <table>
+            <tbody>
+                <tr>
+                    <td><img src="_img/scout-app-logo.svg" alt="Scout-App 2 Logo" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </header>
+
+    <main>
+
+        <section id="downloads-and-video" class="bgbrownsugarketchup">
+            <div class="half">
+                <h1>Sass for Web Designers</h1>
+                <hr />
+                <div id="downloads">
+                    <h3>Downloads</h3>
+                    <div class="half">
+                        <a href="https://github.com/TheJaredWilcurt/scout-app/releases" target="_blank" class="lin32">Linux 32-Bit</a>
+                        <a href="https://github.com/TheJaredWilcurt/scout-app/releases" target="_blank" class="lin64">Linux 64-Bit</a>
+                    </div>
+                    <div class="half">
+                        <a href="https://github.com/TheJaredWilcurt/scout-app/releases" target="_blank" class="osxupdate">OSX</a>
+                        <a href="https://github.com/TheJaredWilcurt/scout-app/releases" target="_blank" class="windowsupdate">Windows</a>
+                    </div>
+                </div>
+                <p><a href="https://github.com/TheJaredWilcurt/scout-app/releases" target="_blank">Previous Versions</a></p>
+            </div>
+            <div class="half bgblack">
+                <!-- Placeholder video -->
+                <iframe src="https://www.youtube-nocookie.com/embed/iaEZbyCH_Sw?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section id="whatsnew" class="bgpuppybase">
+            <h1>What's New in Scout-App</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Version Comparison</th>
+                        <th>2012 (0.7.1)</th>
+                        <th>2016 (<span class="currentVersion">2.0.0</span>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sass Version</td>
+                        <td>2012 (Ruby)</td>
+                        <td>2016 (SassC)</td>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td>Air, Java, Ruby</td>
+                        <td>NW.js, Node</td>
+                    </tr>
+                    <tr>
+                        <td>Cross-Platform</td>
+                        <td>OSX, Windows</td>
+                        <td>Windows, Linux, OSX</td>
+                    </tr>
+                    <tr>
+                        <td>Syntax Support</td>
+                        <td>scss and sass</td>
+                        <td>scss and sass</td>
+                    </tr>
+                    <tr>
+                        <td>Compass Support</td>
+                        <td>Full Support</td>
+                        <td>Only Mixins</td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Potato</td>
+                        <td>Kitten with a Jetpack</td>
+                    </tr>
+                    <tr>
+                        <td>Project Setup</td>
+                        <td>Manual</td>
+                        <td>Automatic &amp; Manual</td>
+                    </tr>
+                    <tr>
+                        <td>Themes</td>
+                        <td>1</td>
+                        <td>19 + Create your own</td>
+                    </tr>
+                    <tr>
+                        <td>Alerts &amp; Errors</td>
+                        <td>Console logs</td>
+                        <td>Human Readable in UI</td>
+                    </tr>
+                    <tr>
+                        <td>Run from Tray</td>
+                        <td>No</td>
+                        <td>Planned</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Mixin Libraries</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Languages</td>
+                        <td>English</td>
+                        <td>English, Dutch, French, Russian, <a href="https://github.com/TheJaredWilcurt/scout-app/blob/Scout-App-2-Dev/documentation/translate-scout.md">contribute more</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="screenshots" class="bgwhite">
+            <div class="half">
+                <h1>Screenshots</h1>
+                <p>Scout-App runs on many different operation systems. Click a logo below to see screenshots from some of the supported OS's.</p>
+                <img src="_img/logo-win.svg"    alt="Windows" title="Windows" data-os="win"    class="win"    />
+                <img src="_img/logo-ubuntu.svg" alt="Ubuntu"  title="Ubuntu"  data-os="ubuntu" class="ubuntu" />
+                <img src="_img/logo-zorin.svg"  alt="Zorin"   title="Zorin"   data-os="zorin"  class="zorin"  />
+                <img src="_img/logo-osx.svg"    alt="OSX"     title="OSX"     data-os="osx"    class="osx"    />
+            </div>
+            <div class="half slick">
+                <div><img src="_img/screenshots/win/02.png" /><p>Editing a Project</p></div>
+            </div>
+        </section>
+
+        <section id="quotes" class="bgpuppybase">
+            <h3>Scout-App is recommended by:</h3>
+            <ul>
+              <li>The official Sass Language website</li>
+              <li><cite>John W. Long, Managing Editor of TheSassWay.com</cite> &mdash; <q>Making it easier to use Sass.</q></li>
+              <li><cite>A List Apart</cite> &mdash; <q>A fast and easy way to work with Sass.</q></li>
+              <li><cite>Mashable</cite> &mdash; <q>Manage your projects effortlessly. Scout does all the heavy lifting.</q></li>
+              <li><cite>noeticforce</cite> &mdash; <q>Scout comes to the rescue and takes all the pain away. I love Scout and recommend it to everyone.</q></li>
+              <li><cite>Impressive Webs</cite> &mdash; <q>Dead simple to get started preprocessing.</q></li>
+              <li><cite>Web Resources Depot</cite> &mdash; <q>Allows anyone to make use of Sass without the complexity of the command line.</q></li>
+              <li><cite>Template Monster</cite> &mdash; <q>Scout-App delivers more control, organization, and optimization to web designers, making their CSS workflow a snap.</q></li>
+              <li><cite>OS Training</cite> &mdash; <q>If you are looking for free software to compile your Sass, this is a great option.</q></li>
+              <li><cite>Johnstonian Era</cite> &mdash; <q>It’s crazy simple to use.</q></li>
+            </ul>
+        </section>
+
+        <section id="cultures" class="bgwhite">
+            <div class="half">
+                <h1>Multi-Language Support</h1>
+
+                <h3 class="textpuppyspot">English, Dutch, French, and Russian</h3>
+
+                <p>Scout-App 2 was designed with a powerful translation engine allowing for easily swapping out language files.</p>
+
+                <p><a href="#cultures" class="showtranslations">Would you like to <strong>help translate</strong> Scout-App?</a></p>
+
+                <div id="translation_instructions" class="bgpuppybase">
+                    <h4>Translating Scout-App 2 Instructions</h4>
+                    <ol>
+                        <li>Login to your <a href="https://accounts.google.com/login" target="_blank">Google Account</a>.</li>
+                        <li>Go to the translation file on <a href="https://docs.google.com/spreadsheets/d/16FtHGThz0-CBz_rf_9QO4zOV7oNmNk2BlwmtvKuzAhs/edit?usp=sharing">Google Sheets</a>.</li>
+                        <li>There is an <strong>en</strong> column for the English version, and a <strong>CONTEXT</strong> column that explains the usage of the text.</li>
+                        <li>Create a new column for your language. (Hide columns from languages you don't care about.)</li>
+                        <li>Translate all of the <strong>en</strong> phrases. Add another column for any notes related to your translations.</li>
+                        <li><a href="https://github.com/mhs/scout-app/issues/new?title=SA2%20-%20Translated%20Scout-App&body=New%20translation%20can%20be%20found%20at%0D%0D%2A%20https%3A%2F%2Fdocs%2Egoogle%2Ecom%2Fspreadsheets%2Fd%2F16FtHGThz0-CBz_rf_9QO4zOV7oNmNk2BlwmtvKuzAhs%2Fedit%3Fusp%3Dsharing">Add an issue to GitHub</a> to inform us of an update to the document.</li>
+                    </ol>
+                </div>
+
+                <div class="osselect">
+                    <img src="_img/logo-win.svg"    alt="Windows" title="Windows" data-os="win"    class="win"    />
+                    <img src="_img/logo-ubuntu.svg" alt="Ubuntu"  title="Ubuntu"  data-os="ubuntu" class="ubuntu" />
+                    <img src="_img/logo-zorin.svg"  alt="Zorin"   title="Zorin"   data-os="zorin"  class="zorin"  />
+                    <img src="_img/logo-osx.svg"    alt="OSX"     title="OSX"     data-os="osx"    class="osx"    />
+                    <small>Click a logo above to see screenshots from that OS.</small>
+                </div>
+            </div>
+            <div class="half slick">
+                <div><img src="_img/screenshots/win/05.png" /><p>Russian</p></div>
+            </div>
+        </section>
+
+        <section id="contributors" class="bgmustard">
+            <div class="full">
+                <h3 class="textketchup">Contributors</h3>
+                <p>As an open source project, Scout-App could not exist without the support and contributions of our users and the open source community.</p>
+            </div>
+            <div class="half">
+                <h4>Scout-App 2 Development</h4>
+                <ul>
+                    <li><a href="http://github.com/TheJaredWilcurt">The Jared Wilcurt</a> - Creator, Maintainer, Project Manager</li>
+                    <li><a href="http://github.com/StephanRaab">Stephan Raab</a> - Themes feature, Bug Testing</li>
+                    <li><a href="https://github.com/BlackBetty">Daniel Golant</a> - UX Testing and Design</li>
+                    <li><a href="https://github.com/kimmortal1">Kim Sharpe</a> - New Logo Design</li>
+                    <li><a href="http://github.com/zdennis">zdennis</a> - UX Design and Planning</li>
+                    <li><a href="http://github.com/mejiaj">mejiaj</a> - UX Design and Planning</li>
+                </ul>
+            </div>
+            <div class="half">
+                <h4>Scout-App 2 Website</h4>
+                <ul>
+                    <li><a href="http://github.com/TheJaredWilcurt">The Jared Wilcurt</a> - Project Management, Site Content, General styles, Image optimization</li>
+                    <li><a href="https://github.com/LRod-101">Luis Rodriguez</a> - Dynamic GitHub API integration
+                    <li><a href="https://github.com/kimmortal1">Kim Sharpe</a> - Logo/Branding</li>
+                    <li><a href="https://github.com/getmicah">Micah Cowell</a> - Gulp setup, Automated Sass processing, JS Minification/Uglification, Hot reloading, LoFi Mockups/Wireframes</li>
+                </ul>
+            </div>
+            <div class="half">
+                <h4>Scout-App 2 Translators</h4>
+                <ul>
+                    <li><a href="http://github.com/StephanRaab">Stephan Raab</a> - French &amp; Dutch</li>
+                    <li><a href="https://github.com/BlackBetty">Daniel Golant</a> - Russian</li>
+                </ul>
+            </div>
+            <div class="half">
+                <h4>Scout-App 1</h4>
+                <ul>
+                    <li><a href="http://github.com/mhs">Mutually Human</a> - The company behind the original</li>
+                    <li><a href="http://github.com/zdennis">zdennis</a> - Lead Developer</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="themes" class="bgwhite">
+            <div class="half">
+                <h1>Themes</h1>
+
+                <p>Most of these themes are supplied from BootSwatch. However you can <a href="https://www.youtube.com/watch?v=DtEVIDvBrSI" target="_blank">create your own custom theme</a> too.</p>
+
+                <div class="osselect">
+                    <img src="_img/logo-win.svg"    alt="Windows" title="Windows" data-os="win"    class="win"    />
+                    <img src="_img/logo-ubuntu.svg" alt="Ubuntu"  title="Ubuntu"  data-os="ubuntu" class="ubuntu" />
+                    <img src="_img/logo-zorin.svg"  alt="Zorin"   title="Zorin"   data-os="zorin"  class="zorin"  />
+                    <img src="_img/logo-osx.svg"    alt="OSX"     title="OSX"     data-os="osx"    class="osx"    />
+                    <small>Click a logo above to see screenshots from that OS.</small>
+                </div>
+            </div>
+            <div class="half slick">
+                <div><img src="_img/screenshots/win/11.png" /><p>Flatly (Windows)</p></div>
+            </div>
+        </section>
+
+        <section id="minreqs_and_mixins" class="bgpuppyspot">
+            <div id="minreqs" class="half">
+                <h4>Minimum System Requirements</h4>
+                <table>
+                    <tr>
+                        <th data-os="win">Windows</th>
+                        <td rowspan="3">
+                            <div class="win">
+                                At least <strong>64MB</strong> of available RAM.
+                                At least <strong>140MB</strong> of free space.
+                                <strong>XP, Vista, 7, 8, 10.</strong>
+                                <strong>32-Bit</strong> or <strong>64-Bit</strong> OS (ARM not supported).
+                            </div>
+                            <div class="osx">
+                                At least <strong>64MB</strong> of available RAM.
+                                At least <strong>180MB</strong> of free space.
+                                <strong>10.6, 10.7, 10.8, 10.9, 10.10, 10.11.</strong>
+                                <strong>64-Bit</strong> OS only (32-Bit and ARM are not supported).
+                            </div>
+                            <div class="ubuntu">
+                                At least <strong>64MB</strong> of available RAM.
+                                At least <strong>170MB</strong> of free space.
+                                <strong>Ubuntu 12, Ubuntu 14, Ubuntu 16, Debian 8, Zorin 9, Zorin 11.</strong>
+                                <strong>32-Bit</strong> or <strong>64-Bit</strong> OS (ARM not supported).
+                                <small>Some other Linux OS's (particularly Debian based) may work, though are not officially supported.</small>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><th data-os="osx">OSX</th></tr>
+                    <tr><th data-os="ubuntu">Linux</th></tr>
+                </table>
+            </div>
+            <div id="mixins" class="half bgpuppybase">
+                <h4>Built-in Mixins</h4>
+                <p>Simply add the <code>@import</code> into your code to have access to that library.</p>
+
+                <div class="table">
+                    <div class="thead">
+                        <div class="tr">
+                            <div class="th half">Code</div>
+                            <div class="th half">Source</div>
+                        </div>
+                    </div>
+                    <div class="tbody limited hide">
+                        <div class="tr">
+                            <div class="td half"><code>@import "compass";</code></div>
+                            <div class="td half"><a href="https://github.com/Igosuki/compass-mixins">@Igosuki/compass-mixins</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "bourbon";</code></div>
+                            <div class="td half"><a href="https://github.com/thoughtbot/bourbon">@thoughtbot/bourbon</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "neat";</code></div>
+                            <div class="td half"><a href="https://github.com/thoughtbot/neat">@thoughtbot/neat</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "meyer";</code></div>
+                            <div class="td half"><a href="https://github.com/TheJaredWilcurt/meyer-sass">@TheJaredWilcurt/meyer-sass</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "buttons";</code></div>
+                            <div class="td half"><a href="https://github.com/alexwolfe/Buttons">@alexwolfe/Buttons</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td showmore full">Show more</div>
+                        </div>
+                    </div>
+                    <div class="tbody complete">
+                        <div class="tr">
+                            <div class="td half"><code>@import "buttons";</code></div>
+                            <div class="td half"><a href="https://github.com/alexwolfe/Buttons">@alexwolfe/Buttons</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "bi-app-ltr";</code></div>
+                            <div class="td half"><a href="https://github.com/anasnakawa/bi-app-sass">@anasnakawa/bi-app-sass</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "bi-app-rtl";</code></div>
+                            <div class="td half"><a href="https://github.com/anasnakawa/bi-app-sass">@anasnakawa/bi-app-sass</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "pineapple-sass";</code></div>
+                            <div class="td half"><a href="https://github.com/ArunMichaelDsouza/pineapple-sass">@ArunMichaelDsouza/pineapple-sass</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "saffron";</code></div>
+                            <div class="td half"><a href="https://github.com/corporadobob/saffron">@corporadobob/saffron</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "scut";</code></div>
+                            <div class="td half"><a href="https://github.com/davidtheclark/scut">@davidtheclark/scut</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "su";</code></div>
+                            <div class="td half"><a href="https://github.com/ericam/susy">@ericam/susy</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "susy";</code></div>
+                            <div class="td half"><a href="https://github.com/ericam/susy">@ericam/susy</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "susyone";</code></div>
+                            <div class="td half"><a href="https://github.com/ericam/susy">@ericam/susy</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "andy";</code></div>
+                            <div class="td half"><a href="https://github.com/gillesbertaux/andy">@gillesbertaux/andy</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "typesettings";</code></div>
+                            <div class="td half"><a href="https://github.com/ianrose/typesettings">@ianrose/typesettings</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "compass";</code></div>
+                            <div class="td half"><a href="https://github.com/Igosuki/compass-mixins">@Igosuki/compass-mixins</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "lemonade";</code></div>
+                            <div class="td half"><a href="https://github.com/Igosuki/compass-mixins">@Igosuki/compass-mixins</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "sassy-buttons";</code></div>
+                            <div class="td half"><a href="https://github.com/jhardy/Sassy-Buttons">@jhardy/Sassy-Buttons</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "bluejay";</code></div>
+                            <div class="td half"><a href="https://github.com/kalebheitzman/bluebird">@kalebheitzman/bluebird</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "sass-easing";</code></div>
+                            <div class="td half"><a href="https://github.com/kingscooty/sass-easing">@kingscooty/sass-easing</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "family";</code></div>
+                            <div class="td half"><a href="https://github.com/LukyVj/family.scss">@LukyVj/family.scss</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "breakpoint";</code></div>
+                            <div class="td half"><a href="https://github.com/lesjames/breakpoint">@lesjames/breakpoint</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "sass-css3-mixins";</code></div>
+                            <div class="td half"><a href="https://github.com/matthieua/sass-css3-mixins">@matthieua/sass-css3-mixins</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "cssowl";</code></div>
+                            <div class="td half"><a href="https://github.com/owl-stars/cssowl">@owl-stars/cssowl</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "sierra";</code></div>
+                            <div class="td half"><a href="https://github.com/sierra-library/sierra">@sierra-library/sierra</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "spice";</code></div>
+                            <div class="td half"><a href="https://github.com/spice-sass/spice">@spice-sass/spice</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "meyer";</code></div>
+                            <div class="td half"><a href="https://github.com/TheJaredWilcurt/meyer-sass">@TheJaredWilcurt/meyer-sass</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "bourbon-deprecated-upcoming";</code></div>
+                            <div class="td half"><a href="https://github.com/thoughtbot/bourbon">@thoughtbot/bourbon</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "bourbon";</code></div>
+                            <div class="td half"><a href="https://github.com/thoughtbot/bourbon">@thoughtbot/bourbon</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td half"><code>@import "neat";</code></div>
+                            <div class="td half"><a href="https://github.com/thoughtbot/neat">@thoughtbot/neat</a></div>
+                        </div>
+                        <div class="tr">
+                            <div class="td showless full">Show less</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>If we've missed a popular mixin library, request it on the <a href="https://github.com/mhs/scout-app/issues" target="_blank">issues page</a>.</p>
+
+            </div>
+        </section>
+
+        <section id="technology" class="bgwhite">
+            <div class="full">
+                <h2 class="textpuppyspot">Scout-App was made with:</h2>
+            </div>
+            <div class="thirds textpuppyspot">
+                <a href="https://github.com/sass/node-sass" target="_blank"><img src="_img/logo-nodesass.svg" alt="The Node-Sass engine." title="The Node-Sass engine." class="node-sass" /></a>
+                <p>The Node-Sass engine.</p>
+            </div>
+            <div class="thirds textpuppyspot">
+                <a href="http://ugui.io" target="_blank"><img src="_img/logo-ugui.png" alt="The Universal GUI Library/Framework" title="The Universal GUI Library/Framework" /></a>
+                <p>The Universal GUI Library/Framework</p>
+            </div>
+            <div class="thirds textpuppyspot">
+                <a href="http://nwjs.io" target="_blank"><img src="_img/logo-nwjs.png" alt="The NW.js Cross-Platform Runtime Environment" title="The NW.js Cross-Platform Runtime Environment" /></a>
+                <p>The NW.js Cross-Platform Runtime Environment</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bgpuppybase">
+        <div>
+            <h4>Additional Links</h4>
+            <a href="https://github.com/TheJaredWilcurt/scout-app/releases">Alternate Downloads</a>
+            <a href="https://gitter.im/TheJaredWilcurt/scout-app">Support Chat</a>
+            <a href="https://github.com/TheJaredWilcurt/scout-app">GitHub</a>
+        </div>
+        <div>
+            <h4>Ideas and Issues</h4>
+            <a href="https://github.com/mhs/scout-app/issues/new?title=SA2%20-%20&body=OS%3A%20%0DVersion%3A%20%0DInformation%20from%20Dev%20Tools%3A%20%0D%0D%28Attach%20screenshot%20below%29">Report Bugs</a>
+            <a href="https://github.com/mhs/scout-app/issues/new?title=SA2%20Feature%20Request%20-%20">Request Features</a>
+        </div>
+        <div>
+            <h4>Contribute</h4>
+            <a href="#cultures" class="translate-link">Translate Scout-App</a>
+            <a href="https://www.youtube.com/watch?v=DtEVIDvBrSI" target="_blank">Create a Theme</a>
+            <a href="https://github.com/mhs/scout-app/issues">Fix Existing Bugs</a>
+            <a href="https://github.com/TheJaredWilcurt/scout-app/blob/Scout-App-2-Dev/documentation/contributing.md">Work on features that are on the roadmap</a>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      if (typeof jQuery == 'undefined') {
+          document.write(unescape("%3Cscript src='_scripts/jquery-2.2.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+      }
+    </script> <!-- Load local jQuery if Google CDN is unreachable -->
+    <script type="text/javascript" src="_scripts/ven.slick.min.js"></script>
+    <script src="_scripts/crossbrowser.js"></script>
+    <script src="_scripts/64or32-jquery.min.js"></script>
+    <script src="_scripts/main.js"></script><!-- _js.main.js-->
+</body>
+</html>
