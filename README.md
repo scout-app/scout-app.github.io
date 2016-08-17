@@ -64,7 +64,7 @@ Before grabbing one of these tasks ask in the [Scout-App chatroom](https://gitte
 * [x] ~~Buy scout-app.io (TJW)~~
 * [ ] [Improve the design of the quotes section](http://imgur.com/gpEGWaK) (Kim)
 * [ ] Improve other aspects of the design in other sections
-* [ ] Update DNS/CNAME and README/Documentation links to new address.
+* [x] ~~Update DNS/CNAME and README/Documentation links to new address.~~
 
 * * *
 
