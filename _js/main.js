@@ -2,7 +2,7 @@
 // DOWNLOAD BUTTONS AND VERSION NUMBERS
 /////////////////////////////////////////
 
-var latestRelease = 'https://api.github.com/repos/TheJaredWilcurt/scout-app/releases';
+var latestRelease = 'https://api.github.com/repos/scout-app/scout-app/releases';
 
 $.get(latestRelease, function (releases) {
 
@@ -110,7 +110,7 @@ $("#translation_instructions").hide();
 $(".showtranslations").click(function () {
     $("#translation_instructions").slideToggle();
 });
-$("footer .translate-link").click(function () {
+$(".translate-link").click(function () {
     $("#translation_instructions").slideDown();
 });
 

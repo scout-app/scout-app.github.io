@@ -15,7 +15,7 @@ We will soon update the CNAME/DNS settings to have it linked to this URL (when n
 
 The repo for the desktop app is located here:
 
-* https://github.com/TheJaredWilcurt/scout-app
+* https://github.com/scout-app/scout-app
 
 
 * * *
@@ -36,7 +36,7 @@ The repo for the desktop app is located here:
 
 * * *
 
-Before grabbing one of these tasks ask in the [Scout-App chatroom](https://gitter.im/TheJaredWilcurt/scout-app) if someone is already working on it.
+Before grabbing one of these tasks ask in the [Scout-App chatroom](https://gitter.im/scout-app/scout-app) if someone is already working on it.
 
 ## Project management
 
@@ -50,8 +50,8 @@ Before grabbing one of these tasks ask in the [Scout-App chatroom](https://gitte
 * [x] ~~Use [GitHub's API](https://developer.github.com/v3/repos/releases) to dynamically set the values of the download buttons (Luis)~~
 * [x] ~~Use Crossbrowser.js and 64or32.js to display the correct download button. (Luis)~~
 * [x] ~~Display a "minimum system requirements", maybe tailor it to each OS, as free space requirement will vary (TJW)~~
-* [x] ~~Show a [comparison table](https://github.com/TheJaredWilcurt/scout-app#scout-app-comparison) of the old Scout-App and the new Scout-App (TJW)~~
-* [x] ~~[Listing of Mixins](https://github.com/TheJaredWilcurt/scout-app#supportedbuilt-in-mixin-libraries) that come built in to Scout-App 2 (TJW)~~
+* [x] ~~Show a [comparison table](http://scout-app.io/#whatsnew) of the old Scout-App and the new Scout-App (TJW)~~
+* [x] ~~[Listing of Mixins](http://scout-app.io/#mixins) that come built in to Scout-App 2 (TJW)~~
 * [x] ~~List of themes (TJW)~~
 * [x] ~~List languages supported by Scout-App (TJW)~~
 * [x] ~~Link to how to translate Scout-App (TJW)~~
