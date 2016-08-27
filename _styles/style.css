@@ -930,6 +930,16 @@ footer a:hover {
   font-size: 24px;
 }
 
+#whatsnew th a {
+  color: #821919;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+#whatsnew th a:hover {
+  color: #D72A2A;
+}
+
 #whatsnew tr:nth-of-type(even) {
   background: rgba(255, 255, 255, 0.5);
 }
