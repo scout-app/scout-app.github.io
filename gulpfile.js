@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
 var insert = require('gulp-insert');
+var crlf = require ('gulp-line-ending-corrector');
 
 function errorLog (error) {
     console.error.bind(error);
@@ -17,6 +18,7 @@ gulp.task('uglify', function () {
         .pipe(uglify())
         .on('error', errorLog)
         .pipe(insert.append('\n'))
+        .pipe(crlf({eolc:'CRLF', encoding:'utf8'}))
         .pipe(gulp.dest('_scripts'));
 });
 
@@ -25,9 +27,11 @@ gulp.task('sass', function () {
     gulp.src('_sass/style.scss')
         .pipe(sass({ outputStyle: 'expanded' })
         .on('error', sass.logError))
+        .pipe(crlf({eolc:'CRLF', encoding:'utf8'}))
         .pipe(gulp.dest('_styles/'))
         .pipe(rename('style.min.css'))
         .pipe(sass({ outputStyle: 'compressed' }))
+        .pipe(crlf({eolc:'CRLF', encoding:'utf8'}))
         .pipe(gulp.dest('_styles/'))
         .pipe(livereload());
 });
