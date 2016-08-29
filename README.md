@@ -60,7 +60,7 @@ Before grabbing one of these tasks ask in the [Scout-App chatroom](https://gitte
 
 ### Phase 2: Non-MVP
 
-* [ ] "Getting Started with Scout-App 2" video (TJW)
+* [x] ~~"Getting Started with Scout-App 2" video (TJW)~~
 * [x] ~~Buy scout-app.io (TJW)~~
 * [ ] [Improve the design of the quotes section](http://imgur.com/gpEGWaK) (Kim)
 * [ ] Improve other aspects of the design in other sections
