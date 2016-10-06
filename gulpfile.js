@@ -81,15 +81,15 @@ gulp.task('watch', function () {
 gulp.task('open', function () {
     var url = 'http://localhost:8000';
     var OS = process.platform;
-    var exectuable = '';
+    var executable = '';
 
     //OS Specific values for opening files.
-    if (OS == 'darwin') { executable = 'open ';     }
-    if (OS == 'linux')  { executable = 'xdg-open '; }
-    if (OS == 'win32')  { exectuable = 'explorer '; }
+    if (OS == 'darwin') { executable = 'open "' + url + '"'; }
+    if (OS == 'linux')  { executable = 'xdg-open ' + url;    }
+    if (OS == 'win32')  { executable = 'explorer ' + url;    }
 
     //Run the OS specific command to open the url in the default browser
-    require("child_process").exec( exectuable + url );
+    require('child_process').exec(executable);
 });
 
 // The default Gulp task that happens when you run gulp.
