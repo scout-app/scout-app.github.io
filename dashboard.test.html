@@ -62,15 +62,34 @@
             function processRelease (data) {
                 for (var i = 0; i < data.length; i++) {
                     var release = data[i];
-                    var currentRelease = {
-                        "version": 'version',
-                        "download": 'release.download_count',
-                        "released": 'release.created_at.split("T")[0]',
-                        "os": 'os',
-                        "url": 'release.html_url',
-                        "fileName": 'release.name',
-                        "fileSize": 'release.size',
-                        "releaseNotes": 'https://github.com/scout-app/scout-app/downloads'
+                    for (var j = 0; j < release.assets.length; j++) {
+                        var asset = release.assets[j];
+                        var fileName = asset.name;
+                        var lowerName = fileName.toLowerCase();
+                        var os = '';
+                        if (lowerName.indexOf('win') > -1) { os = "win"; } else
+                        if (lowerName.indexOf('osx') > -1) { os = "osx"; } else
+                        if (lowerName.indexOf('lin') > -1) { os = "lin"; }
+                        if (window.scout.releases[fileName]) {
+                            window.scout.releases[fileName].version = release.tag_name;
+                            window.scout.releases[fileName].download = window.scout.releases[fileName].download + asset.download_count;
+                            window.scout.releases[fileName].newReleased = release.published_at.split("T")[0];
+                            window.scout.releases[fileName].url = asset.browser_download_url;
+                            window.scout.releases[fileName].fileSize = asset.size;
+                            window.scout.releases[fileName].releaseNotes = release.html_url;
+                        } else {
+                            var currentAsset = {
+                                "version": release.tag_name,
+                                "download": asset.download_count,
+                                "released": release.published_at.split("T")[0],
+                                "os": os,
+                                "url": asset.browser_download_url,
+                                "fileName": fileName,
+                                "fileSize": asset.size,
+                                "releaseNotes": release.html_url
+                            }
+                            window.scout.releases[fileName] = currentAsset;
+                        }
                     }
                 }
             }
@@ -130,13 +149,18 @@
                 }
             }
 
-            $.get("https://api.github.com/repos/TheJaredWilcurt/scout-app/releases", function (tjwData) {
-                processRelease(tjwData);
-                $.get("https://api.github.com/repos/scout-app/scout-app/releases", function (modernData) {
-                    processRelease(modernData);
-                    $.get("https://api.github.com/repos/scout-app/scout-app/downloads", function (classicData) {
-                        processDownload(classicData);
-                        console.log(window.scout);
+            $.get("https://api.github.com/repos/scout-app/scout-app/downloads", function (classicData) {
+                processDownload(classicData);
+                $.get("https://api.github.com/repos/TheJaredWilcurt/scout-app/releases", function (tjwData) {
+                    processRelease(tjwData);
+                    $.get("https://api.github.com/repos/scout-app/scout-app/releases", function (modernData) {
+                        processRelease(modernData);
+                        window.scout.arrayOfReleases = [];
+                        for (item in window.scout.releases) {
+                            window.scout.arrayOfReleases.push(window.scout.releases[item]);
+                        }
+                        console.table(window.scout.releases);
+                        console.log(window.scout.arrayOfReleases);
                     });
                 });
             });
