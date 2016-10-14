@@ -51,77 +51,129 @@
     <script src="_scripts/64or32-jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+            window.win = [];
+            window.lin = [];
+            window.osx = [];
+            window.totalDownloads = [];
+
             function numberWithCommas (x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
 
-            $.get("https://api.github.com/repos/TheJaredWilcurt/scout-app/releases", function (data) {
-                var totalDownloads = [];
-                var win = [];
-                var lin = [];
-                var osx = [];
-                for (var i = 0; i < data.length; i++) {
-                    var version = data[i].tag_name;
-                    var versionNumber = version.split('v')[1];
-                    var dateTime = data[i].created_at;
-                    var date = dateTime.split('T')[0];
-                    var release = '<a href="https://github.com/TheJaredWilcurt/scout-app/releases/tag/' + version + '" title="View release notes">' + date + '</a>';
-                    var downloadURL = "#";
-                    var downloads = "N/A";
-                    var sizeMB = "N/A";
-                    var downloadAndVersion = 'Scout-App ' + version;
-                    if (data[i].assets[0]) {
-                        for (var j = 0; j < data[i].assets.length; j++) {
-                            downloadURL = data[i].assets[j].browser_download_url;
-                            downloads = data[i].assets[j].download_count;
-                            var Bytes = data[i].assets[j].size;
-                            var KB = Bytes / 1024;
-                            var MB = KB / 1024;
-                            sizeMB = '<span title="' + numberWithCommas(Math.round(KB)) + ' KB">' + (Math.round(MB * 10) / 10) + ' MB</span>';
-                            var name = data[i].assets[j].name;
-                            download = '<a href="' + downloadURL + '" title="Download this version">' + name + '</a>';
-                            totalDownloads.push(downloads);
-                            //If file is bigger than 20MB
-                            if ( Bytes > 20000000 ) {
-                                var osLetter = name.toLowerCase().charAt(0);
-                                if ( osLetter == "w" ) {
-                                    win.push(downloads);
-                                } else if ( osLetter == "l" ) {
-                                    lin.push(downloads);
-                                } else if ( osLetter == "o" ) {
-                                    osx.push(downloads);
-                                }
-                            }
-                            //Make the line between releases thicker
-                            var tr = "<tr>";
-                            if (j == 0 && i == 0) {
-                                tr = '<tr class="latest-release">';
-                            } else if (j == 0) {
-                                tr = '<tr class="new-release">';
-                            }
-                            $("#output tbody").append(
-                                tr +
-                                  '<td><strong>' + version + '</strong></td>' +
-                                  '<td>' + download + '</td>' +
-                                  '<td>' + sizeMB + '</td>' +
-                                  '<td>' + release + '</td>' +
-                                  '<td>' + downloads + '</td>' +
-                                '</tr>'
-                            );
-                        }
-                    } else {
-                        $("#output tbody").append(
-                            '<tr>' +
-                              '<td><strong>' + version + '</strong></td>' +
-                              '<td>' + download + '</td>' +
-                              '<td>' + sizeMB + '</td>' +
-                              '<td>' + release + '</td>' +
-                              '<td>' + downloads + '</td>' +
-                            '</tr>'
-                        );
-                    }
+            function createRow (item, i, project) {
+                var version = item.tag_name;
+                var versionNumber = version.split('v')[1];
+                var dateTime = item.created_at;
+                var date = dateTime.split('T')[0];
+                var release = date;
+                if (project == "scout-app") {
+                    release = '<a href="https://github.com/scout-app/scout-app/releases/tag/' + version + '" title="View release notes">' + date + '</a>';
                 }
-                debugger;
+                var downloadURL = "#";
+                var downloads = "N/A";
+                var sizeMB = "N/A";
+                var row = '';
+                var payload = {};
+                if (item.assets[0]) {
+                    for (var j = 0; j < item.assets.length; j++) {
+                        downloadURL = item.assets[j].browser_download_url;
+                        downloads = item.assets[j].download_count;
+                        var Bytes = item.assets[j].size;
+                        var KB = Bytes / 1024;
+                        var MB = KB / 1024;
+                        sizeMB = '<span title="' + numberWithCommas(Math.round(KB)) + ' KB">' + (Math.round(MB * 10) / 10) + ' MB</span>';
+                        var name = item.assets[j].name;
+                        download = '<a href="' + downloadURL + '" title="Download this version">' + name + '</a>';
+                        window.totalDownloads.push(downloads);
+                        //If file is bigger than 20MB
+                        if ( Bytes > 20000000 ) {
+                            var fileName = name.toLowerCase();
+                            if ( fileName.indexOf('win') > -1 ) {
+                                window.win.push(downloads);
+                            } else if ( fileName.indexOf('lin') > -1 ) {
+                                window.lin.push(downloads);
+                            } else if ( fileName.indexOf('osx') > -1 ) {
+                                window.osx.push(downloads);
+                            }
+                        }
+                        //Make the line between releases thicker
+                        var latestRelease = false;
+                        var newRelease = false;
+                        if (j == 0 && i == 0) {
+                            latestRelease = true;
+                        } else if (j == 0) {
+                            newRelease = true;
+                        }
+                        payload = {
+                            "latestRelease": latestRelease,
+                            "newRelease": newRelease,
+                            "id": name,
+                            "version": version,
+                            "download": download,
+                            "size": sizeMB,
+                            "release": release,
+                            "downloads": downloads
+                        };
+                        updateTable(payload);
+                    }
+                } else {
+                    payload = {
+                        "latestRelease": false,
+                        "newRelease": false,
+                        "id": false,
+                        "version": item.tag_name,
+                        "download": download,
+                        "size": sizeMB,
+                        "release": release,
+                        "downloads": downloads
+                    };
+                    updateTable(payload);
+                }
+            }
+
+            function updateTable (rowData) {
+                if (rowData && rowData.id) {
+                    if ($("#" + rowData.id).length > 0) {
+                        $("#" + rowData.id + " .download").html(rowData.download);
+                        $("#" + rowData.id + " .released").html(rowData.release);
+                        var existingRowDownloads = parseInt($('#' + rowData.id + '.downloads').html(), 10);
+                        var newDownloads = existingRowDownloads + rowData.downloads;
+                        $("#" + rowData.id + " .downloads").html(rowData.downloads);
+                    } else {
+                        var latestOrNewRelease = '';
+                        if (rowData.latestRelease) {
+                            latestOrNewRelease = 'class="latest-release"';
+                        } else if (rowData.newRelease) {
+                            latestOrNewRelease = 'class="new-release"';
+                        }
+                        var row =
+                          '<tr id="' + rowData.id + '" ' + latestOrNewRelease + '>' +
+                            '<td class="version"><strong>' + rowData.version   + '</strong></td>' +
+                            '<td class="download">'        + rowData.download  + '</td>' +
+                            '<td class="size">'            + rowData.size      + '</td>' +
+                            '<td class="released">'        + rowData.release   + '</td>' +
+                            '<td class="downloads">'       + rowData.downloads + '</td>' +
+                          '</tr>';
+                        $("#output tbody").append(row);
+                    }
+                } else if (rowData) {
+                    var rowNoID =
+                      '<tr ' + latestOrNewRelease + '>' +
+                        '<td class="version"><strong>' + rowData.version   + '</strong></td>' +
+                        '<td class="download">'        + rowData.download  + '</td>' +
+                        '<td class="size">'            + rowData.size      + '</td>' +
+                        '<td class="released">'        + rowData.release   + '</td>' +
+                        '<td class="downloads">'       + rowData.downloads + '</td>' +
+                      '</tr>';
+                    $("#output tbody").append(rowNoID);
+                }
+            }
+
+            $.get("https://api.github.com/repos/TheJaredWilcurt/scout-app/releases", function (tjwData) {
+                //debugger;
+                for (var i = 0; i < tjwData.length; i++) {
+                    createRow(tjwData[i], i, 'tjw');
+                }
                 var downloadCount = 0;
                 var downloadCountWIN = 0;
                 var downloadCountLIN = 0;
@@ -131,20 +183,51 @@
                 }
                 for (var l = 0; l < win.length; l++) {
                     downloadCountWIN = downloadCountWIN + win[l];
+                    window.originalWIN = downloadCountWIN;
                 }
                 for (var m = 0; m < lin.length; m++) {
                     downloadCountLIN = downloadCountLIN + lin[m];
+                    window.originalLIN = downloadCountLIN;
                 }
                 for (var n = 0; n < osx.length; n++) {
                     downloadCountOSX = downloadCountOSX + osx[n];
+                    window.originalOSX = downloadCountOSX;
                 }
-                $("#total").html('<p>The official releases of Scout-App have been downloaded <strong>' + downloadCount + ' times</strong>.</p>');
-                var withoutCLI = downloadCountWIN + downloadCountLIN + downloadCountOSX;
-                console.log(withoutCLI);
-                $("#os .win").width( Math.round( (downloadCountWIN / withoutCLI) * 100) + "%" ).attr("title", downloadCountWIN + " downloads");
-                $("#os .lin").width( Math.round( (downloadCountLIN / withoutCLI) * 100) + "%" ).attr("title", downloadCountLIN + " downloads");
-                $("#os .osx").width( Math.round( (downloadCountOSX / withoutCLI) * 100) + "%" ).attr("title", downloadCountOSX + " downloads");
-                $("#os").css("visibility", "visible");
+                $("#total").html(downloadCount);
+
+                $.get("https://api.github.com/repos/scout-app/scout-app/releases", function (data) {
+                    var totalDownloads = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var rowData = createRow(data[i], 'scout-app');
+                        updateTable(rowData);
+                    }
+                    var downloadCount = 0;
+                    var downloadCountWIN = 0;
+                    var downloadCountLIN = 0;
+                    var downloadCountOSX = 0;
+                    for (var k = 0; k < totalDownloads.length; k++) {
+                        downloadCount = downloadCount + totalDownloads[k];
+                    }
+                    for (var l = 0; l < win.length; l++) {
+                        downloadCountWIN = downloadCountWIN + win[l];
+                    }
+                    for (var m = 0; m < lin.length; m++) {
+                        downloadCountLIN = downloadCountLIN + lin[m];
+                    }
+                    for (var n = 0; n < osx.length; n++) {
+                        downloadCountOSX = downloadCountOSX + osx[n];
+                    }
+                    var dlcount = parseInt($("#total").text(), 10);
+                    dlcount = dlcount + downloadCount;
+                    $("#total").html(dlcount);
+                    var withoutCLI = downloadCountWIN + downloadCountLIN + downloadCountOSX;
+                    var originWin = $("#os .win")
+                    $("#os .win").width( Math.round( (downloadCountWIN / withoutCLI) * 100) + "%" ).attr("title", downloadCountWIN + " downloads");
+                    $("#os .lin").width( Math.round( (downloadCountLIN / withoutCLI) * 100) + "%" ).attr("title", downloadCountLIN + " downloads");
+                    $("#os .osx").width( Math.round( (downloadCountOSX / withoutCLI) * 100) + "%" ).attr("title", downloadCountOSX + " downloads");
+                    $("#os").css("visibility", "visible");
+
+                });
 
             });
         });
@@ -164,7 +247,9 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-          <div id="total"></div>
+          <div>
+              <p>The Scout-App have been downloaded <strong><span id="total">a bunch of</span> times</strong>.</p>
+          </div>
 
           <table id="os">
             <tbody>
@@ -194,6 +279,6 @@
 
     </div>
 
-    <a href="https://github.com/TheJaredWilcurt/scout-app" class="github-corner" title="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="position:absolute;top:0;border:0;right:0" fill="#008cba" color="#fff"><path d="M0 0l115 115h15l12 27 108 108v-250z"/><path d="M128.3 109c-14.5-9.3-9.3-19.4-9.3-19.4 3-6.9 1.5-11 1.5-11-1.3-6.6 2.9-2.3 2.9-2.3 3.9 4.6 2.1 11 2.1 11-2.6 10.3 5.1 14.6 8.9 15.9" fill="#fff" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115c-.1.1 3.7 1.5 4.8.4l13.9-13.8c3.2-2.4 6.2-3.2 8.5-3-8.4-10.6-14.7-24.2 1.6-40.6 4.7-4.6 10.2-6.8 15.9-7 .6-1.6 3.5-7.4 11.7-10.9 0 0 4.7 2.4 7.4 16.1 4.3 2.4 8.4 5.6 12.1 9.2 3.6 3.6 6.8 7.8 9.2 12.2 13.7 2.6 16.2 7.3 16.2 7.3-3.6 8.2-9.4 11.1-10.9 11.7-.3 5.8-2.4 11.2-7.1 15.9-16.4 16.4-30 10-40.6 1.6.2 2.8-1 6.8-5 10.8l-11.7 11.6c-1.2 1.2.6 5.4.8 5.3z" fill="#fff" class="octo-body"/></svg></a>
+    <a href="https://github.com/scout-app/scout-app" class="github-corner" title="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="position:absolute;top:0;border:0;right:0" fill="#008cba" color="#fff"><path d="M0 0l115 115h15l12 27 108 108v-250z"/><path d="M128.3 109c-14.5-9.3-9.3-19.4-9.3-19.4 3-6.9 1.5-11 1.5-11-1.3-6.6 2.9-2.3 2.9-2.3 3.9 4.6 2.1 11 2.1 11-2.6 10.3 5.1 14.6 8.9 15.9" fill="#fff" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115c-.1.1 3.7 1.5 4.8.4l13.9-13.8c3.2-2.4 6.2-3.2 8.5-3-8.4-10.6-14.7-24.2 1.6-40.6 4.7-4.6 10.2-6.8 15.9-7 .6-1.6 3.5-7.4 11.7-10.9 0 0 4.7 2.4 7.4 16.1 4.3 2.4 8.4 5.6 12.1 9.2 3.6 3.6 6.8 7.8 9.2 12.2 13.7 2.6 16.2 7.3 16.2 7.3-3.6 8.2-9.4 11.1-10.9 11.7-.3 5.8-2.4 11.2-7.1 15.9-16.4 16.4-30 10-40.6 1.6.2 2.8-1 6.8-5 10.8l-11.7 11.6c-1.2 1.2.6 5.4.8 5.3z" fill="#fff" class="octo-body"/></svg></a>
   </body>
 </html>
