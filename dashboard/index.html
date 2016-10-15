@@ -183,16 +183,22 @@
             function updateTotalDownloads () {
                 var totalDownloads = 0;
                 var vtwoDownloads = 0;
-                for (var i = 0; i < window.scout.arrayOfReleases.length; i++) {
-                    var release = window.scout.arrayOfReleases[i];
+                var latestDownloads = 0;
+                for (var i = 0; i < window.scout.byDate.length; i++) {
+                    var release = window.scout.byDate[i];
                     totalDownloads = totalDownloads + release.download;
                     if (release.version.startsWith('v2.')) {
                         vtwoDownloads = vtwoDownloads + release.download;
+                    }
+                    if (release.version == window.scout.byDate[0].version) {
+                        latestDownloads = latestDownloads + release.download;
                     }
                 }
                 $("#total").html(numberWithCommas(totalDownloads));
                 $("#classicTotal").html(numberWithCommas(totalDownloads - vtwoDownloads));
                 $("#vtwoTotal").html(numberWithCommas(vtwoDownloads));
+                $("#latestTotal").html(numberWithCommas(latestDownloads));
+                $("#latestDate").html(window.scout.byDate[0].released);
                 window.scout.totalDownloads = totalDownloads;
             }
 
@@ -202,6 +208,7 @@
                 byDate.sort(function (a, b) {
                     return b.sort - a.sort;
                 });
+                window.scout.byDate = byDate;
 
                 for (var i = 0; i < byDate.length; i++) {
                     var release = byDate[i];
@@ -260,9 +267,9 @@
                         for (item in window.scout.releases) {
                             window.scout.arrayOfReleases.push(window.scout.releases[item]);
                         }
-                        updateTotalDownloads();
                         createTable();
                         updateBarGraph();
+                        updateTotalDownloads();
                     });
                 });
             });
@@ -286,7 +293,8 @@
           <div>
               <h4>Scout-App have been downloaded <strong><span id="total">a bunch of</span> times</strong>.</h4>
               <p>Scout-App Classic was downloaded <strong><span id="classicTotal">a bunch of</span> times</strong> from <em>2011 to 2016</em>.</p>
-              <p>Scout-App 2 was downloaded <strong><span id="vtwoTotal">a bunch of</span> times</strong> since <em>2016</em>.</p>
+              <p>Scout-App 2 was downloaded <strong><span id="vtwoTotal">a bunch of</span> times</strong> since <em>2016-04-18</em>.</p>
+              <p>The latest release has been download <strong><span id="latestTotal">a bunch of</span> times</strong> since <em id="latestDate">2016</em>.</p>
           </div>
 
           <table id="os">
