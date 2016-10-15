@@ -50,12 +50,15 @@
         #output img {
             max-height: 1.2em;
         }
-        #os {
-            margin: 4px 0px;
+        .font0 {
+            font-size: 0px;
         }
         h1 a {
             text-decoration: none;
             font-size: 1em;
+        }
+        h1 a img {
+            max-width: 40%;
         }
         h4 {
             font-family: "Montserrat", sans-serif;
@@ -200,6 +203,7 @@
                 $("#latestTotal").html(numberWithCommas(latestDownloads));
                 $("#latestDate").html(window.scout.byDate[0].released);
                 window.scout.totalDownloads = totalDownloads;
+                window.scout.vtwoDownloads = vtwoDownloads;
             }
 
             function createTable () {
@@ -244,17 +248,35 @@
                 var downloadCountWIN = 0;
                 var downloadCountLIN = 0;
                 var downloadCountOSX = 0;
+                var downloadNewWIN = 0;
+                var downloadNewLIN = 0;
+                var downloadNewOSX = 0;
                 var totalDownloads = window.scout.totalDownloads;
+                var totalvtwoDownloads = window.scout.vtwoDownloads;
                 for (var i = 0; i < window.scout.arrayOfReleases.length; i++) {
                     var release = window.scout.arrayOfReleases[i];
                     if (release.os == "win") { downloadCountWIN = downloadCountWIN + release.download }
                     if (release.os == "lin") { downloadCountLIN = downloadCountLIN + release.download }
                     if (release.os == "osx") { downloadCountOSX = downloadCountOSX + release.download }
+                    if (release.version.startsWith('v2')) {
+                        if (release.os == "win") { downloadNewWIN = downloadNewWIN + release.download }
+                        if (release.os == "lin") { downloadNewLIN = downloadNewLIN + release.download }
+                        if (release.os == "osx") { downloadNewOSX = downloadNewOSX + release.download }
+                    }
                 }
-                $("#os .win").width( Math.round( (downloadCountWIN / totalDownloads) * 100) + "%" ).attr("title", numberWithCommas(downloadCountWIN) + " downloads");
-                $("#os .lin").width( Math.round( (downloadCountLIN / totalDownloads) * 100) + "%" ).attr("title", numberWithCommas(downloadCountLIN) + " downloads");
-                $("#os .osx").width( Math.round( (downloadCountOSX / totalDownloads) * 100) + "%" ).attr("title", numberWithCommas(downloadCountOSX) + " downloads");
-                $("#os").css("visibility", "visible");
+                var winPercent = Math.round( (downloadCountWIN / totalDownloads) * 100) + "%";
+                var linPercent = Math.round( (downloadCountLIN / totalDownloads) * 100) + "%";
+                var osxPercent = Math.round( (downloadCountOSX / totalDownloads) * 100) + "%";
+                var winPercent2 = Math.round( (downloadNewWIN / totalvtwoDownloads) * 100) + "%";
+                var linPercent2 = Math.round( (downloadNewLIN / totalvtwoDownloads) * 100) + "%";
+                var osxPercent2 = Math.round( (downloadNewOSX / totalvtwoDownloads) * 100) + "%";
+                $("#os .win").width( winPercent ).attr("title", numberWithCommas(downloadCountWIN) + " downloads (" + winPercent + ")");
+                $("#os .lin").width( linPercent ).attr("title", numberWithCommas(downloadCountLIN) + " downloads (" + linPercent + ")");
+                $("#os .osx").width( osxPercent ).attr("title", numberWithCommas(downloadCountOSX) + " downloads (" + osxPercent + ")");
+                $("#os2 .win").width( winPercent2 ).attr("title", numberWithCommas(downloadNewWIN) + " downloads (" + winPercent2 + ")");
+                $("#os2 .lin").width( linPercent2 ).attr("title", numberWithCommas(downloadNewLIN) + " downloads (" + linPercent2 + ")");
+                $("#os2 .osx").width( osxPercent2 ).attr("title", numberWithCommas(downloadNewOSX) + " downloads (" + osxPercent2 + ")");
+                $("#os, #os2").css("visibility", "visible");
             }
 
             $.get("https://api.github.com/repos/scout-app/scout-app/downloads", function (classicData) {
@@ -274,7 +296,6 @@
                 });
             });
         });
-
     </script>
 
   </head>
@@ -283,7 +304,7 @@
     <div id="wrapper">
 
       <div class="row">
-        <h1><a href="http://scout-app.io" class="textbrownsugarketchup">Scout-App</a></h1>
+        <h1><a href="http://scout-app.io" class="textbrownsugarketchup"><img src="/_img/scout-app-logo.svg" /></a></h1>
       </div>
 
       <div class="row">
@@ -297,15 +318,41 @@
               <p>The latest release has been download <strong><span id="latestTotal">a bunch of</span> times</strong> since <em id="latestDate">2016</em>.</p>
           </div>
 
-          <table id="os">
-            <tbody>
-              <tr>
-                <td class="win">Windows</td>
-                <td class="lin">Linux</td>
-                <td class="osx">OSX</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="font0">
+            <div class="half">
+              <table id="os">
+                <thead>
+                  <tr>
+                    <th colspan="3">OS Specific Downloads since <strong>v0.4.0</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="win">Windows</td>
+                    <td class="lin">Linux</td>
+                    <td class="osx">OSX</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="half">
+              <table id="os2">
+                <thead>
+                  <tr>
+                    <th colspan="3">OS Specific Downloads since <strong>v2.0.0</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="win">Windows</td>
+                    <td class="lin">Linux</td>
+                    <td class="osx">OSX</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
           <table id="output" class="table table-hover">
             <thead>

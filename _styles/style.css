@@ -1387,16 +1387,29 @@ footer a:hover {
 }
 
 /* OS totals chart */
-#os {
+#os,
+#os2 {
   visibility: hidden;
-  width: 100%;
+  width: 97%;
   font-size: 0px;
-  margin: -8px 0px 4px 0px;
+  margin: 4px auto;
+}
+
+#os th,
+#os2 th {
+  background-color: #29D89F;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  line-height: 1.5em;
+  border-radius: 10px 10px 0px 0px;
 }
 
 #os .win,
 #os .lin,
-#os .osx {
+#os .osx,
+#os2 .win,
+#os2 .lin,
+#os2 .osx {
   height: 20px;
   line-height: 20px;
   font-size: 12px;
@@ -1405,16 +1418,21 @@ footer a:hover {
   cursor: default;
 }
 
-#os .win {
+#os .win,
+#os2 .win {
   background: #297FD8;
+  border-radius: 0px 0px 0px 10px;
 }
 
-#os .lin {
+#os .lin,
+#os2 .lin {
   background: #9500BA;
 }
 
-#os .osx {
+#os .osx,
+#os2 .osx {
   background: #FD51B0;
+  border-radius: 0px 0px 10px 0px;
 }
 
 #total {
