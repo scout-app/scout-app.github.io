@@ -216,8 +216,10 @@
 
                 for (var i = 0; i < byDate.length; i++) {
                     var release = byDate[i];
+                    var version = '<strong>' + release.version + '</strong>';
                     var size = convertToMB(release.fileSize);
                     var download = '<a href="' + release.url + '" title="Download this version">' + release.fileName + '</a>';
+                    var downloads = numberWithCommas(release.download);
                     var released = '<a href="' + release.releaseNotes + '" title="View Release Notes">' + release.released + '</a>';
                     var os = '<img src="/_img/logo-win.svg" alt="Windows" title="Windows" />';
                     if (release.os == "lin") {
@@ -233,12 +235,12 @@
                     }
                     var row =
                       tr +
-                        '<td class="version"><strong>' + release.version   + '</strong></td>' +
-                        '<td class="download">'        + download          + '</td>' +
-                        '<td class="size">'            + size              + '</td>' +
-                        '<td class="os">'              + os                + '</td>' +
-                        '<td class="released">'        + released          + '</td>' +
-                        '<td class="downloads">'       + release.download  + '</td>' +
+                        '<td class="version">'   + version   + '</td>' +
+                        '<td class="download">'  + download  + '</td>' +
+                        '<td class="size">'      + size      + '</td>' +
+                        '<td class="os">'        + os        + '</td>' +
+                        '<td class="released">'  + released  + '</td>' +
+                        '<td class="downloads">' + downloads + '</td>' +
                       '</tr>';
                     $('#output tbody').append(row);
                 }
