@@ -214,7 +214,7 @@
                     var release = byDate[i];
                     var size = convertToMB(release.fileSize);
                     var download = '<a href="' + release.url + '" title="Download this version">' + release.fileName + '</a>';
-                    var released = '<a href="' + release.releaseNotes + '">' + release.released + '</a>';
+                    var released = '<a href="' + release.releaseNotes + '" title="View Release Notes">' + release.released + '</a>';
                     var os = '<img src="/_img/logo-win.svg" alt="Windows" title="Windows" />';
                     if (release.os == "lin") {
                         os = '<img src="/_img/logo-ubuntu.svg" alt="Linux" title="Linux" />';
