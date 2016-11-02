@@ -40,6 +40,20 @@ gulp.task('sass', function () {
         .pipe(livereload());
 });
 
+// Create expanded and .min versions of Sass styles in the _styles folder as CSS
+gulp.task('sassfold', function () {
+    gulp.src('_sass/fold.scss')
+        .pipe(sass({ outputStyle: 'expanded' })
+        .on('error', sass.logError))
+        .pipe(crlf({eolc:'CRLF', encoding:'utf8'}))
+        .pipe(gulp.dest('_styles/'))
+        .pipe(rename('fold.min.css'))
+        .pipe(sass({ outputStyle: 'compressed' }))
+        .pipe(crlf({eolc:'CRLF', encoding:'utf8'}))
+        .pipe(gulp.dest('_styles/'))
+        .pipe(livereload());
+});
+
 // Lint the main.js file to ensure code consistency and catch any errors
 gulp.task('lint', function() {
     return gulp.src('_js/main.js')
@@ -71,7 +85,7 @@ gulp.task('html', function () {
 gulp.task('watch', function () {
     gulp.watch('_js/*.js', ['lint']);
     gulp.watch('_js/*.js', ['uglify']);
-    gulp.watch('_sass/*', ['sass']);
+    gulp.watch('_sass/*', ['sass', 'sassfold']);
     gulp.watch('*.html', ['html']);
 
     livereload.listen();
@@ -94,4 +108,4 @@ gulp.task('open', function () {
 
 // The default Gulp task that happens when you run gulp.
 // It runs all the other gulp tasks above in the correct order.
-gulp.task('default', ['sass', 'lint', 'uglify', 'watch', 'serve', 'open']);
+gulp.task('default', ['sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open']);
