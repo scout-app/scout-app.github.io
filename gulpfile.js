@@ -5,6 +5,7 @@ var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
+var sassLint = require('gulp-sass-lint')
 var uglify = require('gulp-uglify');
 var insert = require('gulp-insert');
 var crlf = require ('gulp-line-ending-corrector');
@@ -61,6 +62,13 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
+gulp.task('sasslint', function () {
+  return gulp.src('_sass/**/*.s+(a|c)ss')
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+});
+
 // Run a local server on port 8000
 gulp.task('serve', function (done) {
     var express = require('express');
@@ -85,7 +93,7 @@ gulp.task('html', function () {
 gulp.task('watch', function () {
     gulp.watch('_js/*.js', ['lint']);
     gulp.watch('_js/*.js', ['uglify']);
-    gulp.watch('_sass/*', ['sass', 'sassfold']);
+    gulp.watch('_sass/*', ['sasslint', 'sass', 'sassfold']);
     gulp.watch('*.html', ['html']);
 
     livereload.listen();
@@ -108,4 +116,4 @@ gulp.task('open', function () {
 
 // The default Gulp task that happens when you run gulp.
 // It runs all the other gulp tasks above in the correct order.
-gulp.task('default', ['sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open']);
+gulp.task('default', ['sasslint', 'sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open']);

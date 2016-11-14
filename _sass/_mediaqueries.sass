@@ -1,6 +1,8 @@
 
 // Media Queries that alter the styles on the page depending on browser width
 
+$reduceToPercent: 0.8
+
 @media screen and (max-width: 1093px)
     #downloads
         max-width: 80%
@@ -10,9 +12,9 @@
         .half
             width: 50%
         .table
-            font-size: 22px * 0.8
+            font-size: 22px * $reduceToPercent
         .th
-            font-size: 30px * 0.8
+            font-size: 30px * $reduceToPercent
         .td
             padding: 6px 4px 5px
             line-height: 20px
@@ -22,12 +24,16 @@
             font-size: 16px
     section
         table
-            font-size: 22px * 0.8
+            font-size: 22px * $reduceToPercent
         th
-            font-size: 30px * 0.8
+            font-size: 30px * $reduceToPercent
     .slick img
         max-height: 300px
+
+// sass-lint:disable indentation
 
 @media screen and (max-width: 700px)
     .thirds
         width: 100%
+
+// sass-lint:enable indentation
