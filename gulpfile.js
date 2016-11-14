@@ -63,10 +63,10 @@ gulp.task('lint', function() {
 });
 
 gulp.task('sasslint', function () {
-  return gulp.src('_sass/**/*.s+(a|c)ss')
-    .pipe(sassLint())
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
+    return gulp.src('_sass/**/*.s+(a|c)ss')
+        .pipe(sassLint())
+        .pipe(sassLint.format())
+        .pipe(sassLint.failOnError())
 });
 
 // Run a local server on port 8000
@@ -116,4 +116,4 @@ gulp.task('open', function () {
 
 // The default Gulp task that happens when you run gulp.
 // It runs all the other gulp tasks above in the correct order.
-gulp.task('default', ['sasslint', 'sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open']);
+gulp.task('default', ['sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open', 'sasslint']);

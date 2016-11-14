@@ -1274,11 +1274,11 @@ footer a:hover {
   padding: 10px;
 }
 
-.new-release td {
+#output .new-release td {
   border-top: 2px solid #297FD8;
 }
 
-.latest-release td {
+#output .latest-release td {
   border-top: 0px;
 }
 
