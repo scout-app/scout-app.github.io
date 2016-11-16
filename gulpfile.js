@@ -93,7 +93,7 @@ gulp.task('html', function () {
 gulp.task('watch', function () {
     gulp.watch('_js/*.js', ['lint']);
     gulp.watch('_js/*.js', ['uglify']);
-    gulp.watch('_sass/*', ['sasslint', 'sass', 'sassfold']);
+    gulp.watch('_sass/*', ['sass', 'sassfold']);
     gulp.watch('*.html', ['html']);
 
     livereload.listen();
@@ -116,4 +116,4 @@ gulp.task('open', function () {
 
 // The default Gulp task that happens when you run gulp.
 // It runs all the other gulp tasks above in the correct order.
-gulp.task('default', ['sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open', 'sasslint']);
+gulp.task('default', ['sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open']);
