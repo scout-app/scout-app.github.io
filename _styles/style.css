@@ -728,6 +728,7 @@ code {
 
 header {
   height: 100%;
+  height: calc(100% - 34px);
   background: #FFD255;
   padding: 0px 0px 5px 0px;
   text-align: center;
@@ -1270,6 +1271,40 @@ footer a:hover {
   padding: 0px;
   color: #F2ECE8;
   font-size: 14px;
+}
+
+#stickers {
+  padding: 50px;
+}
+
+#stickers h1,
+#stickers h2 {
+  margin: 0px;
+  line-height: 1.4em;
+}
+
+#stickers h1 {
+  margin-bottom: 20px;
+}
+
+#stickers h1 a {
+  color: #FFD255;
+  font-size: 40px;
+  text-decoration: underline;
+}
+
+#stickers .devswag {
+  display: block;
+  width: 250px;
+  background: #FFF;
+  border-radius: 10px;
+  margin: 50px auto;
+  padding: 12px 10px 10px 10px;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+}
+
+#stickers img {
+  max-height: 360px;
 }
 
 /* Archive Table */
