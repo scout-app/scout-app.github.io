@@ -179,7 +179,7 @@ function slickInit (target) {
 }
 
 function slideMaker (os, img, text) {
-    return '<div><img data-lazy="_img/screenshots/' + os + '/' + img + '.png" alt="' + text + '" /><p>' + text + '</p></div>';
+    return '<div><img data-lazy="/_img/screenshots/' + os + '/' + img + '.png" alt="' + text + '" /><p>' + text + '</p></div>';
 }
 
 function updateScreenshots (os) {
