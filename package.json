@@ -30,9 +30,9 @@
     "scripts": {
         "start": "gulp",
         "installer": "npm install --loglevel=error",
-        "lint": "eslint --config=.eslintrc.js _js",
+        "lint": "eslint --config=.eslintrc.js _js gulpfile.js",
         "sasslint": "gulp sasslint",
-        "fix": "eslint --fix --config=.eslintrc.js _js"
+        "fix": "eslint --fix --config=.eslintrc.js _js gulpfile.js"
     },
     "sasslintConfig": ".sass-lint.yml",
     "license": "MIT",

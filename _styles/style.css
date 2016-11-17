@@ -912,7 +912,7 @@ footer a:hover {
 }
 
 #whatsnew table {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", "Arial Rounded MT", "Arial Black", sans-serif;
 }
 
 #whatsnew thead {
@@ -968,7 +968,7 @@ footer a:hover {
 
 #quotes {
   padding: 30px 0px 40px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", "Arial Rounded MT", "Arial Black", sans-serif;
   font-weight: 700;
 }
 
@@ -1105,7 +1105,7 @@ footer a:hover {
 
 #minreqs table {
   height: 185px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", "Arial Rounded MT", "Arial Black", sans-serif;
 }
 
 #minreqs th {
@@ -1247,7 +1247,7 @@ footer a:hover {
 }
 
 #technology p {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", "Arial Rounded MT", "Arial Black", sans-serif;
 }
 
 #technology img {
@@ -1261,11 +1261,15 @@ footer a:hover {
 
 #sticker-banner {
   padding: 10px;
+  font-family: "Montserrat", "Arial Rounded MT", "Arial Black", sans-serif;
+  font-size: 14px;
   text-align: center;
 }
 
 #sticker-banner a {
-  color: #FFD255;
+  padding: 0px;
+  color: #F2ECE8;
+  font-size: 14px;
 }
 
 /* Archive Table */
@@ -1304,7 +1308,7 @@ footer a:hover {
 #os2 th {
   background-color: #29D89F;
   border-radius: 10px 10px 0px 0px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", "Arial Rounded MT", "Arial Black", sans-serif;
   font-size: 18px;
   line-height: 1.5em;
 }
