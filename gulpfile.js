@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable no-multi-spaces */
+
 // Includes - Defining what will be used below.
 // These are pulled in from the node_modules folder.
 var gulp = require('gulp');
@@ -5,10 +8,10 @@ var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
-var sassLint = require('gulp-sass-lint')
+var sassLint = require('gulp-sass-lint');
 var uglify = require('gulp-uglify');
 var insert = require('gulp-insert');
-var crlf = require ('gulp-line-ending-corrector');
+var crlf = require('gulp-line-ending-corrector');
 
 // Basic error logging function to be used below
 function errorLog (error) {
@@ -42,13 +45,13 @@ gulp.task('sass', function () {
 });
 
 // Create expanded and .min versions of Sass styles in the _styles folder as CSS
-gulp.task('sassfold', function () {
-    gulp.src('_sass/fold.scss')
+gulp.task('sassfont', function () {
+    gulp.src('_sass/fonts.scss')
         .pipe(sass({ outputStyle: 'expanded' })
         .on('error', sass.logError))
         .pipe(crlf({eolc:'CRLF', encoding:'utf8'}))
         .pipe(gulp.dest('_styles/'))
-        .pipe(rename('fold.min.css'))
+        .pipe(rename('fonts.min.css'))
         .pipe(sass({ outputStyle: 'compressed' }))
         .pipe(crlf({eolc:'CRLF', encoding:'utf8'}))
         .pipe(gulp.dest('_styles/'))
@@ -56,17 +59,17 @@ gulp.task('sassfold', function () {
 });
 
 // Lint the main.js file to ensure code consistency and catch any errors
-gulp.task('lint', function() {
+gulp.task('lint', function () {
     return gulp.src('_js/main.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
 
 gulp.task('sasslint', function () {
-    return gulp.src('_sass/**/*.s+(a|c)ss')
+    gulp.src(['_sass/*.scss', '_sass/*.sass'])
         .pipe(sassLint())
         .pipe(sassLint.format())
-        .pipe(sassLint.failOnError())
+        .pipe(sassLint.failOnError());
 });
 
 // Run a local server on port 8000
@@ -77,7 +80,7 @@ gulp.task('serve', function (done) {
     var path = __dirname;
     app.use(express.static(path));
     app.listen(8000, function () {
-         done();
+        done();
     });
 });
 
@@ -93,7 +96,7 @@ gulp.task('html', function () {
 gulp.task('watch', function () {
     gulp.watch('_js/*.js', ['lint']);
     gulp.watch('_js/*.js', ['uglify']);
-    gulp.watch('_sass/*', ['sasslint', 'sass', 'sassfold']);
+    gulp.watch('_sass/*', ['sass', 'sassfont']);
     gulp.watch('*.html', ['html']);
 
     livereload.listen();
@@ -116,4 +119,4 @@ gulp.task('open', function () {
 
 // The default Gulp task that happens when you run gulp.
 // It runs all the other gulp tasks above in the correct order.
-gulp.task('default', ['sass', 'sassfold', 'lint', 'uglify', 'watch', 'serve', 'open', 'sasslint']);
+gulp.task('default', ['sass', 'sassfont', 'lint', 'uglify', 'watch', 'serve', 'open']);
