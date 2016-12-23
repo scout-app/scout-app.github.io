@@ -7,7 +7,7 @@ The site is hosted by GitHub here:
 
 * https://scout-app.github.io
 
-We however our CNAME autoforwards to:
+However our CNAME autoforwards to:
 
 * http://scout-app.io
 
@@ -17,6 +17,7 @@ The repo for the desktop app is located here:
 
 
 * * *
+
 
 ### Prerequisites for running locally
 
@@ -32,7 +33,9 @@ The repo for the desktop app is located here:
 3. `npm start`
 4. Click the livereload icon in your browser to enable it for that page
 
+
 * * *
+
 
 ## Contributors
 
