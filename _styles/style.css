@@ -1261,10 +1261,12 @@ footer a:hover {
 }
 
 #sticker-banner {
+  position: relative;
   padding: 10px;
   font-family: "Montserrat", "Arial Rounded MT", "Arial Black", sans-serif;
   font-size: 14px;
   text-align: center;
+  z-index: 2;
 }
 
 #sticker-banner a {
