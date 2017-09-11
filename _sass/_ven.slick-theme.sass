@@ -24,28 +24,32 @@ $slick-opacity-not-active: 0.25 !default
     @if function-exists(image-url)
         @return image-url($url)
     @else
+        // sass-lint:disable indentation
         @return url($slick-loader-path + $url)
+        // sass-lint:enable indentation
 
 @function slick-font-url($url)
     @if function-exists(font-url)
         @return font-url($url)
     @else
+        // sass-lint:disable indentation
         @return url($slick-font-path + $url)
+        // sass-lint:enable indentation
 
 /* Slider */
 
 .slick-list
     .slick-loading &
-        background: #fff slick-image-url("ajax-loader.gif") center center no-repeat
+        background: #FFF slick-image-url("ajax-loader.gif") center center no-repeat
 
 /* Icons */
 @if $slick-font-family == "slick"
     @font-face
         font-family: "slick"
+        font-style: normal
+        font-weight: normal
         src: slick-font-url("slick.eot")
         src: slick-font-url("slick.eot?#iefix") format("embedded-opentype"), slick-font-url("slick.woff") format("woff"), slick-font-url("slick.ttf") format("truetype"), slick-font-url("slick.svg#slick") format("svg")
-        font-weight: normal
-        font-style: normal
 
 /* Arrows */
 
@@ -55,13 +59,13 @@ $slick-opacity-not-active: 0.25 !default
     position: absolute
     top: 50%
     display: block
-    height: $slick-arrow-size
     width: $slick-arrow-size
+    height: $slick-arrow-size
     background: transparent
     border: none
     padding: 0px
-    font-size: 0px
     color: transparent
+    font-size: 0px
     line-height: 0px
     cursor: pointer
     outline: none
@@ -87,8 +91,8 @@ $slick-opacity-not-active: 0.25 !default
 .slick-prev
     left: 0px
     [dir="rtl"] &
-        left: auto
         right: 0px
+        left: auto
     &:before
         content: $slick-prev-character
         [dir="rtl"] &
@@ -97,8 +101,8 @@ $slick-opacity-not-active: 0.25 !default
 .slick-next
     right: 0px
     [dir="rtl"] &
-        left: 0px
         right: auto
+        left: 0px
     &:before
         content: $slick-next-character
         [dir="rtl"] &
@@ -122,9 +126,9 @@ $slick-opacity-not-active: 0.25 !default
     li
         position: relative
         display: inline-block
-        height: 20px
         width: 20px
-        margin: 0 5px
+        height: 20px
+        margin: 0px 5px
         padding: 0px
         cursor: pointer
         button
@@ -137,8 +141,8 @@ $slick-opacity-not-active: 0.25 !default
             color: transparent
             font-size: 0px
             line-height: 0px
-            outline: none
             cursor: pointer
+            outline: none
             &:hover,
             &:focus
                 outline: none
@@ -172,11 +176,11 @@ $slick-opacity-not-active: 0.25 !default
         max-height: 600px
         margin: 0px auto
     p
-        font-size: 14px
         padding-bottom: 20px
+        font-size: 14px
 
 .slick-slide
-    transition: 1s ease all
     opacity: 0.75
+    transition: 1s ease all
     &.slick-current
         opacity: 1.0

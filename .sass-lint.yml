@@ -111,6 +111,7 @@ rules:
         - box-shadow
         - cursor
         - opacity
+        - outline
         - vertical-align
         - visibility
         - z-index
