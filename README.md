@@ -1,5 +1,5 @@
 
-# Scout-App 2 Homepage
+# Scout-App 2 Homepage [![Build Status](https://travis-ci.org/scout-app/scout-app.github.io.svg?branch=master)](https://travis-ci.org/scout-app/scout-app.github.io)
 
 This is the repo for the official website of the open source desktop app, Scout-App (the simplest Sass processor).
 
