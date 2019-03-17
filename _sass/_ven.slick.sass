@@ -8,6 +8,9 @@
     -ms-touch-action: pan-y
     touch-action: pan-y
     -webkit-tap-highlight-color: transparent
+    .slick-track,
+    .slick-list
+        +translate3d(0, 0, 0)
 
 .slick-list
     position: relative
@@ -18,12 +21,7 @@
     &:focus
         outline: none
     &.dragging
-        cursor: pointer
         cursor: hand
-
-.slick-slider .slick-track,
-.slick-slider .slick-list
-    +translate3d(0, 0, 0)
 
 .slick-track
     position: relative

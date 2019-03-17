@@ -5,27 +5,27 @@
 // "\2192" outputs ascii character "→"
 // "\2022" outputs ascii character "•"
 
-$slick-font-path: "../_fonts/" !default
-$slick-loader-path: "../_img/" !default
-$slick-font-family: "slick" !default
-$slick-arrow-color: #000 !default
-$slick-arrow-size: 33px !default
-$slick-dot-color: #000 !default
-$slick-dot-color-active: $slick-dot-color !default
-$slick-prev-character: "←" !default
-$slick-next-character: "→" !default
-$slick-dot-character: "•" !default
-$slick-dot-size: 6px !default
-$slick-opacity-default: 0.75 !default
-$slick-opacity-on-hover: 1 !default
-$slick-opacity-not-active: 0.25 !default
+$slickFontPath: "../_fonts/" !default
+$slickLoaderPath: "../_img/" !default
+$slickFontFamily: "slick" !default
+$slickArrowColor: #000 !default
+$slickArrowSize: 33px !default
+$slickDotColor: #000 !default
+$slickDotColorActive: $slickDotColor !default
+$slickPrevCharacter: "←" !default
+$slickNextCharacter: "→" !default
+$slickDotCharacter: "•" !default
+$slickDotSize: 6px !default
+$slickOpacityDefault: 0.75 !default
+$slickOpacityOnHover: 1 !default
+$slickOpacityNotActive: 0.25 !default
 
 @function slick-image-url($url)
     @if function-exists(image-url)
         @return image-url($url)
     @else
         // sass-lint:disable indentation
-        @return url($slick-loader-path + $url)
+        @return url($slickLoaderPath + $url)
         // sass-lint:enable indentation
 
 @function slick-font-url($url)
@@ -33,23 +33,25 @@ $slick-opacity-not-active: 0.25 !default
         @return font-url($url)
     @else
         // sass-lint:disable indentation
-        @return url($slick-font-path + $url)
+        @return url($slickFontPath + $url)
         // sass-lint:enable indentation
 
 /* Slider */
 
 .slick-list
     .slick-loading &
-        background: #FFF slick-image-url("ajax-loader.gif") center center no-repeat
+        background: $white slick-image-url("ajax-loader.gif") center center no-repeat
 
 /* Icons */
-@if $slick-font-family == "slick"
+@if $slickFontFamily == "slick"
     @font-face
         font-family: "slick"
         font-style: normal
         font-weight: normal
+        // sass-lint:disable no-duplicate-properties
         src: slick-font-url("slick.eot")
         src: slick-font-url("slick.eot?#iefix") format("embedded-opentype"), slick-font-url("slick.woff") format("woff"), slick-font-url("slick.ttf") format("truetype"), slick-font-url("slick.svg#slick") format("svg")
+        // sass-lint:enabled no-duplicate-properties
 
 /* Arrows */
 
@@ -59,8 +61,8 @@ $slick-opacity-not-active: 0.25 !default
     position: absolute
     top: 50%
     display: block
-    width: $slick-arrow-size
-    height: $slick-arrow-size
+    width: $slickArrowSize
+    height: $slickArrowSize
     background: transparent
     border: none
     padding: 0px
@@ -76,15 +78,15 @@ $slick-opacity-not-active: 0.25 !default
         color: transparent
         outline: none
         &:before
-            opacity: $slick-opacity-on-hover
+            opacity: $slickOpacityOnHover
     &.slick-disabled:before
-        opacity: $slick-opacity-not-active
+        opacity: $slickOpacityNotActive
     &:before
-        color: $slick-arrow-color
-        font-family: $slick-font-family
-        font-size: $slick-arrow-size
+        color: $slickArrowColor
+        font-family: $slickFontFamily
+        font-size: $slickArrowSize
         line-height: 1
-        opacity: $slick-opacity-default
+        opacity: $slickOpacityDefault
         -webkit-font-smoothing: antialiased
         -moz-osx-font-smoothing: grayscale
 
@@ -94,9 +96,9 @@ $slick-opacity-not-active: 0.25 !default
         right: 0px
         left: auto
     &:before
-        content: $slick-prev-character
+        content: $slickPrevCharacter
         [dir="rtl"] &
-            content: $slick-next-character
+            content: $slickNextCharacter
 
 .slick-next
     right: 0px
@@ -104,9 +106,9 @@ $slick-opacity-not-active: 0.25 !default
         right: auto
         left: 0px
     &:before
-        content: $slick-next-character
+        content: $slickNextCharacter
         [dir="rtl"] &
-            content: $slick-prev-character
+            content: $slickPrevCharacter
 
 /* Dots */
 
@@ -147,29 +149,29 @@ $slick-opacity-not-active: 0.25 !default
             &:focus
                 outline: none
                 &:before
-                    opacity: $slick-opacity-on-hover
+                    opacity: $slickOpacityOnHover
             &:before
-                content: $slick-dot-character
+                content: $slickDotCharacter
                 position: absolute
                 top: 0px
                 left: 0px
                 width: 20px
                 height: 20px
-                color: $slick-dot-color
-                font-family: $slick-font-family
-                font-size: $slick-dot-size
+                color: $slickDotColor
+                font-family: $slickFontFamily
+                font-size: $slickDotSize
                 line-height: 20px
                 text-align: center
-                text-shadow: 0px 0px 0px #FFF, 0px 0px 0px #FFF
-                opacity: $slick-opacity-not-active
+                text-shadow: 0px 0px 0px $white, 0px 0px 0px $white
+                opacity: $slickOpacityNotActive
                 -webkit-font-smoothing: antialiased
                 -moz-osx-font-smoothing: grayscale
         &.slick-active button:before
-            color: $slick-dot-color-active
-            opacity: $slick-opacity-default
+            color: $slickDotColorActive
+            opacity: $slickOpacityDefault
 
 .slick
-    background: #FFF
+    background: $white
     div
         outline: none
     img
